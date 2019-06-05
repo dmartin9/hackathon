@@ -30,7 +30,7 @@ class App(Resource):
             return item
         return result_iterable[0]
 
-api.add_resource(HelloWorld, '/')
+api.add_resource(App, '/')
 
 if __name__ == '__main__':
     app.run(debug=True)

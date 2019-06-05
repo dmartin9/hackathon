@@ -9,7 +9,7 @@ from flask_restful import Resource, Api
 app = Flask(__name__)
 api = Api(app)
 
-class HelloWorld(Resource):
+class App(Resource):
     def get(self):
         config = {
             'ENDPOINT': 'https://hackny2.documents.azure.com:443/',
