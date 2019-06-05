@@ -1,16 +1,13 @@
 import azure.cosmos.cosmos_client as cosmos_client
-from flask import Flask
-from flask_restful import Resource, Api
+from flask import Flask, jsonify
 
 
 
 
 
 app = Flask(__name__)
-api = Api(app)
-
-class App(Resource):
-    def get(self):
+@app.route("/")
+def get():
         config = {
             'ENDPOINT': 'https://hackny2.documents.azure.com:443/',
             'PRIMARYKEY': 'uDB7OOzZ4QYeDOlVMd4TCRKKyFKM8tc0i53CaVhD4ydDLkrdFcigqwMXNk7POme00MqpBH5sHBStEhv0EgW8Dw==',
@@ -27,10 +24,10 @@ class App(Resource):
 
         result_iterable = client.ReadContainers('dbs/hackny2')
         for item in iter(result_iterable):
-            return item
+            return jsonify(item)
         return result_iterable[0]
 
-api.add_resource(App, '/')
+
 
 if __name__ == '__main__':
-    app.run(debug=True,port='443')
+    app.run(debug=True)
